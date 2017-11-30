@@ -10,10 +10,10 @@ import { TestComponent } from './components/containers';
 
 const app = (
   <Provider store={store.configure(null)}>
-    <TestComponent />
-    {/* <BrowserRouter>
+    {/* <TestComponent /> */}
+    <BrowserRouter>
       <div>{renderRoutes(routes)}</div>
-    </BrowserRouter> */}
+    </BrowserRouter>
   </Provider>
 );
 

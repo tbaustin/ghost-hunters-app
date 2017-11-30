@@ -9,6 +9,8 @@ import {
   // GhostMap,
   // NotAuth,
   // TestMap,
+  Map,
+  Users,
   TestComponent
 } from './components/containers';
 import App from './components/App';
@@ -19,7 +21,16 @@ export default [
     routes: [
       {
         component: TestComponent,
-        path: '/'
+        path: '/',
+        exact: true
+      },
+      {
+        component: Map,
+        path: '/map'
+      },
+      {
+        component: Users,
+        path: '/users'
       }
     ]
   }
