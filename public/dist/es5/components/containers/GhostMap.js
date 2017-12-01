@@ -185,15 +185,8 @@ var GhostMap = function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      var markers = this.state.markers;
+      var markers = this.state.markers || [];
 
-      if (markers == null) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          'Loading...'
-        );
-      }
       return _react2.default.createElement(
         'div',
         { className: 'row' },

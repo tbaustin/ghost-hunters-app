@@ -7,12 +7,14 @@ import { renderRoutes } from 'react-router-config';
 import store from './stores';
 import routes from './routes';
 
+const initialState = window.INITIAL_STATE;
+
 const app = (
-  <Provider store={store.configure(null)}>
+  <Provider store={store.configure(initialState)}>
     <BrowserRouter>
       <div>{renderRoutes(routes)}</div>
     </BrowserRouter>
   </Provider>
 );
 
-ReactDOM.render(app, document.getElementById('root'));
+ReactDOM.hydrate(app, document.getElementById('root'));

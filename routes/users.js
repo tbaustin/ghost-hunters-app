@@ -74,8 +74,7 @@ router.post('/login', (req, res) => {
     .catch(err => {
       res.json({
         confirmation: 'fail',
-        message: err.message,
-        site_id: pkg_json.app
+        message: err.message
       });
     });
 });
