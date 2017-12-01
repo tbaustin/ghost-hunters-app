@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import apiActions from '../../actions/apiActions';
 
 class Header extends Component {
+  componentDidMount() {
+    if (this.props.users.currentUser == null) {
+      this.props.currentUser();
+    }
+  }
+
   render() {
+    const currentUser = this.props.users.currentUser || '';
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">
@@ -38,10 +48,29 @@ class Header extends Component {
               </Link>
             </li>
           </ul>
+          <ul className="navbar-nav navbar-right">
+            <li className="nav-item active">
+              <Link className="nav-link" to={`/profile/${currentUser.id}`}>
+                {currentUser.username}
+              </Link>
+            </li>
+          </ul>
         </div>
       </nav>
     );
   }
 }
 
-export default Header;
+const stateToProps = state => {
+  return {
+    users: state.user
+  };
+};
+
+const dispatchToProps = dispatch => {
+  return {
+    currentUser: () => dispatch(apiActions.apiCurrentUser())
+  };
+};
+
+export default connect(stateToProps, dispatchToProps)(Header);

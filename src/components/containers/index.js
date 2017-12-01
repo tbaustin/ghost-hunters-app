@@ -1,5 +1,25 @@
+import Posts from './Posts';
+import Account from './Account';
+import Post from './Post';
+import Profile from './Profile';
+import Reply from './Reply';
+import NotFound from './NotFound';
+import UsersList from './UsersList';
+import GhostMap from './GhostMap';
+import NotAuth from './NotAuth';
+import TestMap from './TestMap';
 import TestComponent from './TestComponent';
-import Users from './Users';
-import Map from './Map';
 
-export { TestComponent, Users, Map };
+export {
+  Posts,
+  Account,
+  Profile,
+  Post,
+  Reply,
+  NotFound,
+  UsersList,
+  GhostMap,
+  NotAuth,
+  TestMap,
+  TestComponent
+};

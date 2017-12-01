@@ -1,13 +1,6 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
-	Export your reducers here
-* * * * * * * * * * * * * * * * * * * * * * * * * * * *
-*/
+import userReducer from './userReducer';
+import postReducer from './postReducer';
+import replyReducer from './replyReducer';
+import profileReducer from './profileReducer';
 
-
-import userReducer from './userReducer'
-
-export {
-	
-	userReducer
-	
-}
+export { userReducer, postReducer, replyReducer, profileReducer };

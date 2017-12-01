@@ -1,17 +1,14 @@
 import React from 'react';
 
 import {
-  // Post,
-  // Posts,
-  // Profile,
-  // NotFound,
-  // UsersList,
-  // GhostMap,
-  // NotAuth,
-  // TestMap,
-  Map,
-  Users,
-  TestComponent
+  Post,
+  Posts,
+  Profile,
+  NotFound,
+  UsersList,
+  GhostMap,
+  NotAuth,
+  TestMap
 } from './components/containers';
 import App from './components/App';
 
@@ -20,17 +17,32 @@ export default [
     ...App,
     routes: [
       {
-        component: TestComponent,
+        ...Posts,
         path: '/',
         exact: true
       },
       {
-        component: Map,
+        ...Post,
+        path: '/post/:id'
+      },
+      {
+        ...Profile,
+        path: '/profile/:id'
+      },
+      {
+        ...UsersList,
+        path: '/users'
+      },
+      {
+        ...GhostMap,
         path: '/map'
       },
       {
-        component: Users,
-        path: '/users'
+        ...NotAuth,
+        path: '/noauth'
+      },
+      {
+        ...NotFound
       }
     ]
   }

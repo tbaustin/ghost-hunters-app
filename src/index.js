@@ -6,11 +6,9 @@ import { renderRoutes } from 'react-router-config';
 
 import store from './stores';
 import routes from './routes';
-import { TestComponent } from './components/containers';
 
 const app = (
   <Provider store={store.configure(null)}>
-    {/* <TestComponent /> */}
     <BrowserRouter>
       <div>{renderRoutes(routes)}</div>
     </BrowserRouter>
