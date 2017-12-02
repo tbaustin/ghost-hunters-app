@@ -151,6 +151,10 @@ class GhostMap extends Component {
 
   render() {
     const markers = this.state.markers || [];
+    const { currentLocation } = this.state;
+    if (!currentLocation) {
+      return null;
+    }
 
     return (
       <div className="row">
@@ -176,7 +180,7 @@ class GhostMap extends Component {
               });
             }}
             onMarkerClick={this.handleMarkerClick}
-            center={this.state.currentLocation}
+            center={currentLocation}
             markers={markers}
             zoom={10}
             onCloseClick={this.handleCloseClick}
