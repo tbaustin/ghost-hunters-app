@@ -49,7 +49,14 @@ class Map extends Component {
           const onCloseClick = () => this.props.onCloseClick(marker);
 
           return (
-            <Marker key={i} position={marker.position} title={marker.title} onClick={onClick}>
+            <Marker
+              key={i}
+              position={marker.position}
+              icon={marker.icon}
+              clickable={true}
+              title={marker.title}
+              onClick={onClick}
+            >
               {marker.showInfo && (
                 <InfoWindow onCloseClick={onCloseClick}>
                   <div>
@@ -60,17 +67,6 @@ class Map extends Component {
             </Marker>
           );
         })}
-        {/* {markers.map((marker, index) => (
-          <Marker
-            key={index}
-            clickable={true}
-            icon={marker.icon}
-            label={marker.label}
-            title={marker.key}
-            onClick={this.handleMarkerClick.bind(this, marker)}
-            {...marker}
-          />
-        ))} */}
       </GoogleMap>
     );
   }

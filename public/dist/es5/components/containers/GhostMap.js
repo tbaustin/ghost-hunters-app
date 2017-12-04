@@ -186,6 +186,11 @@ var GhostMap = function (_Component) {
       var _this3 = this;
 
       var markers = this.state.markers || [];
+      var currentLocation = this.state.currentLocation;
+
+      if (!currentLocation) {
+        return null;
+      }
 
       return _react2.default.createElement(
         'div',
@@ -222,7 +227,7 @@ var GhostMap = function (_Component) {
               });
             },
             onMarkerClick: this.handleMarkerClick,
-            center: this.state.currentLocation,
+            center: currentLocation,
             markers: markers,
             zoom: 10,
             onCloseClick: this.handleCloseClick,

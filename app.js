@@ -15,6 +15,11 @@ const users = require('./routes/users');
 app.use('/', index);
 app.use('/api/users', users);
 
+// solution for refresh until turbo can use backend babel
+app.get('*', function(req, res) {
+  res.render('index', null);
+});
+
 // app.use(renderer);
 
 module.exports = app;

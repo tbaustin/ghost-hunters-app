@@ -121,15 +121,10 @@ class GhostMap extends Component {
 
   handleCloseClick(targetMarker) {
     this.setState({
-      markers: this.state.markers.map(marker => {
-        if (marker._id === targetMarker._id) {
-          return {
-            ...marker,
-            showInfo: false
-          };
-        }
-        return marker;
-      })
+      markers: this.state.markers.map(
+        marker =>
+          marker.id === targetMarker.id ? { ...marker, showInfo: !marker.showInfo } : marker
+      )
     });
   }
 
@@ -180,10 +175,10 @@ class GhostMap extends Component {
               });
             }}
             onMarkerClick={this.handleMarkerClick}
+            onCloseClick={this.handleCloseClick}
             center={currentLocation}
             markers={markers}
             zoom={10}
-            onCloseClick={this.handleCloseClick}
             containerElement={<div style={{ height: 100 + '%' }} />}
             mapElement={<div style={{ height: 100 + '%' }} />}
           />

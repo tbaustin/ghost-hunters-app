@@ -61389,7 +61389,14 @@ var Map = function (_Component) {
 
           return _react2.default.createElement(
             _reactGoogleMaps.Marker,
-            { key: i, position: marker.position, title: marker.title, onClick: onClick },
+            {
+              key: i,
+              position: marker.position,
+              icon: marker.icon,
+              clickable: true,
+              title: marker.title,
+              onClick: onClick
+            },
             marker.showInfo && _react2.default.createElement(
               _reactGoogleMaps.InfoWindow,
               { onCloseClick: onCloseClick },
@@ -74595,12 +74602,7 @@ var GhostMap = function (_Component) {
     value: function handleCloseClick(targetMarker) {
       this.setState({
         markers: this.state.markers.map(function (marker) {
-          if (marker._id === targetMarker._id) {
-            return _extends({}, marker, {
-              showInfo: false
-            });
-          }
-          return marker;
+          return marker.id === targetMarker.id ? _extends({}, marker, { showInfo: !marker.showInfo }) : marker;
         })
       });
     }
@@ -74671,10 +74673,10 @@ var GhostMap = function (_Component) {
               });
             },
             onMarkerClick: this.handleMarkerClick,
+            onCloseClick: this.handleCloseClick,
             center: currentLocation,
             markers: markers,
             zoom: 10,
-            onCloseClick: this.handleCloseClick,
             containerElement: _react2.default.createElement('div', { style: { height: 100 + '%' } }),
             mapElement: _react2.default.createElement('div', { style: { height: 100 + '%' } })
           })
