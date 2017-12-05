@@ -6,8 +6,6 @@ const Helmet = require('react-helmet').Helmet;
 const serialize = require('serialize-javascript');
 
 const store = require('../public/dist/es5/stores');
-console.log(store);
-console.log(store.configure());
 
 // const renderer = require('../renderer');
 

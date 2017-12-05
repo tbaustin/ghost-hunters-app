@@ -16,8 +16,9 @@ class GhostMap extends Component {
     this.state = {
       map: null,
       currentLocation: null,
-      radius: 100,
-      markers: null
+      radius: 25,
+      markers: null,
+      zoom: 10
     };
 
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
@@ -129,25 +130,26 @@ class GhostMap extends Component {
   }
 
   updateRadius(event) {
-    const radius = event.target.value;
-    console.log(radius);
-    console.log(typeof radius);
-    // this.setState({
-    //   radius: radius
-    // });
-    // const posts = this.props.posts.all;
-    // const { lat, lng } = this.state.currentLocation;
-    // if (typeof radius !== 'number') {
-    //   alert('Please put in a number');
-    //   return;
-    // }
-    // if (this.props.posts.all && this.state.currentLocation) {
-    //   this.createMarkersWithinRadius(this.props.posts.all, radius, lat, lng);
-    // }
+    const radius = Number(event.target.value);
+    this.setState({
+      radius: radius
+    });
+    const posts = this.props.posts.all;
+    const { lat, lng } = this.state.currentLocation;
+    if (typeof radius !== 'number') {
+      alert('Please put in a number');
+      return;
+    }
+    if (this.props.posts.all && this.state.currentLocation) {
+      this.setState({
+        markers: this.createMarkersWithinRadius(this.props.posts.all, radius, lat, lng)
+      });
+    }
   }
 
   render() {
     const markers = this.state.markers || [];
+    console.log(markers);
     const { currentLocation } = this.state;
     if (!currentLocation) {
       return null;
@@ -162,7 +164,7 @@ class GhostMap extends Component {
               onChange={this.updateRadius}
               className="form-control"
               id="radius"
-              type="Number"
+              type="number"
               placeholder="Radius"
             />
           </div>
@@ -180,7 +182,7 @@ class GhostMap extends Component {
             onCloseClick={this.handleCloseClick}
             center={currentLocation}
             markers={markers}
-            zoom={10}
+            zoom={this.state.zoom}
             containerElement={<div style={{ height: 100 + '%' }} />}
             mapElement={<div style={{ height: 100 + '%' }} />}
           />
