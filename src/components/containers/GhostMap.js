@@ -149,7 +149,6 @@ class GhostMap extends Component {
 
   render() {
     const markers = this.state.markers || [];
-    console.log(markers);
     const { currentLocation } = this.state;
     if (!currentLocation) {
       return null;
