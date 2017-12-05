@@ -88,7 +88,14 @@ var Map = function (_Component) {
 
           return _react2.default.createElement(
             _reactGoogleMaps.Marker,
-            { key: i, position: marker.position, title: marker.title, onClick: onClick },
+            {
+              key: i,
+              position: marker.position,
+              icon: marker.icon,
+              clickable: true,
+              title: marker.title,
+              onClick: onClick
+            },
             marker.showInfo && _react2.default.createElement(
               _reactGoogleMaps.InfoWindow,
               { onCloseClick: onCloseClick },

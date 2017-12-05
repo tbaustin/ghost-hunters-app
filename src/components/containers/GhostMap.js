@@ -130,18 +130,20 @@ class GhostMap extends Component {
 
   updateRadius(event) {
     const radius = event.target.value;
-    this.setState({
-      radius: radius
-    });
-    const posts = this.props.posts.all;
-    const { lat, lng } = this.state.currentLocation;
-    if (typeof radius !== 'number') {
-      alert('Please put in a number');
-      return;
-    }
-    if (this.props.posts.all && this.state.currentLocation) {
-      this.createMarkersWithinRadius(this.props.posts.all, radius, lat, lng);
-    }
+    console.log(radius);
+    console.log(typeof radius);
+    // this.setState({
+    //   radius: radius
+    // });
+    // const posts = this.props.posts.all;
+    // const { lat, lng } = this.state.currentLocation;
+    // if (typeof radius !== 'number') {
+    //   alert('Please put in a number');
+    //   return;
+    // }
+    // if (this.props.posts.all && this.state.currentLocation) {
+    //   this.createMarkersWithinRadius(this.props.posts.all, radius, lat, lng);
+    // }
   }
 
   render() {
