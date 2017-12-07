@@ -66,6 +66,7 @@ var UsersList = function (_Component) {
   }, {
     key: 'head',
     value: function head() {
+      var users = this.props.users.all;
       return _react2.default.createElement(
         _reactHelmet.Helmet,
         null,
@@ -195,5 +196,5 @@ var loadData = function loadData(store) {
 
 exports.default = {
   loadData: loadData,
-  component: (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(stateToProps, dispatchToProps)(UsersList))
+  component: (0, _reactRedux.connect)(stateToProps, dispatchToProps)(UsersList)
 };

@@ -12,7 +12,7 @@ function SSRes5(req, res) {
     turbo
       .fetchOne('user', req.vertexSession.user.id)
       .then(data => {
-        initial.user = { currentUser: data };
+        initial.user = { currentUser: data, all: [] };
 
         const initialStore = store.default.configure(initial);
         const initialState = serialize(initialStore.getState());

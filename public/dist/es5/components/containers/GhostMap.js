@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -55,8 +53,9 @@ var GhostMap = function (_Component) {
     _this.state = {
       map: null,
       currentLocation: null,
-      radius: 100,
-      markers: null
+      radius: 25,
+      markers: null,
+      zoom: 10
     };
 
     _this.handleMarkerClick = _this.handleMarkerClick.bind(_this);
@@ -160,21 +159,24 @@ var GhostMap = function (_Component) {
   }, {
     key: 'updateRadius',
     value: function updateRadius(event) {
-      var radius = event.target.value;
-      console.log(radius);
-      console.log(typeof radius === 'undefined' ? 'undefined' : _typeof(radius));
-      // this.setState({
-      //   radius: radius
-      // });
-      // const posts = this.props.posts.all;
-      // const { lat, lng } = this.state.currentLocation;
-      // if (typeof radius !== 'number') {
-      //   alert('Please put in a number');
-      //   return;
-      // }
-      // if (this.props.posts.all && this.state.currentLocation) {
-      //   this.createMarkersWithinRadius(this.props.posts.all, radius, lat, lng);
-      // }
+      var radius = Number(event.target.value);
+      this.setState({
+        radius: radius
+      });
+      var posts = this.props.posts.all;
+      var _state$currentLocatio = this.state.currentLocation,
+          lat = _state$currentLocatio.lat,
+          lng = _state$currentLocatio.lng;
+
+      if (typeof radius !== 'number') {
+        alert('Please put in a number');
+        return;
+      }
+      if (this.props.posts.all && this.state.currentLocation) {
+        this.setState({
+          markers: this.createMarkersWithinRadius(this.props.posts.all, radius, lat, lng)
+        });
+      }
     }
   }, {
     key: 'render',
@@ -206,7 +208,7 @@ var GhostMap = function (_Component) {
               onChange: this.updateRadius,
               className: 'form-control',
               id: 'radius',
-              type: 'Number',
+              type: 'number',
               placeholder: 'Radius'
             })
           )
@@ -226,7 +228,7 @@ var GhostMap = function (_Component) {
             onCloseClick: this.handleCloseClick,
             center: currentLocation,
             markers: markers,
-            zoom: 10,
+            zoom: this.state.zoom,
             containerElement: _react2.default.createElement('div', { style: { height: 100 + '%' } }),
             mapElement: _react2.default.createElement('div', { style: { height: 100 + '%' } })
           })

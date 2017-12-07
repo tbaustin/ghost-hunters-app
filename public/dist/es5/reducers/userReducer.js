@@ -14,7 +14,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var initialState = {
   all: [],
-  currentUser: null // signed in user
+  currentUser: null
 };
 
 exports.default = function () {
@@ -25,8 +25,7 @@ exports.default = function () {
 
   switch (action.type) {
     case _constants2.default.CURRENT_USER_RECEIVED:
-      newState['currentUser'] = action.data;
-      return newState;
+      return _extends({}, state, { currentUser: action.data });
 
     case _constants2.default.USERS_RECEIVED:
       newState['all'] = action.data;
@@ -56,6 +55,6 @@ exports.default = function () {
       });
 
     default:
-      return state;
+      return _extends({}, state);
   }
 };

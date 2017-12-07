@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 
 import actions from '../../actions';
 import apiActions from '../../actions/apiActions';
@@ -33,6 +32,7 @@ class UsersList extends Component {
   }
 
   head() {
+    const users = this.props.users.all;
     return (
       <Helmet>
         <title>{`${this.props.users.all.length || ''} Users Loaded`}</title>
@@ -115,5 +115,5 @@ const loadData = store => {
 
 export default {
   loadData: loadData,
-  component: withRouter(connect(stateToProps, dispatchToProps)(UsersList))
+  component: connect(stateToProps, dispatchToProps)(UsersList)
 };

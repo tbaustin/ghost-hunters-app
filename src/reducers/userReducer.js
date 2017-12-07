@@ -2,7 +2,7 @@ import constants from '../constants';
 
 var initialState = {
   all: [],
-  currentUser: null // signed in user
+  currentUser: null
 };
 
 export default (state = initialState, action) => {
@@ -10,8 +10,7 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
     case constants.CURRENT_USER_RECEIVED:
-      newState['currentUser'] = action.data;
-      return newState;
+      return { ...state, currentUser: action.data };
 
     case constants.USERS_RECEIVED:
       newState['all'] = action.data;
@@ -40,6 +39,6 @@ export default (state = initialState, action) => {
       };
 
     default:
-      return state;
+      return { ...state };
   }
 };
